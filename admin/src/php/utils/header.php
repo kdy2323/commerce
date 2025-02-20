@@ -4,7 +4,11 @@
 $title = "Site 2025 PUBLIC - Missions";
 
 // Définition de la page à afficher et création de la variable de session
+<<<<<<< HEAD
 $page = isset($_GET['page']) ? $_GET['page'] : 'pdo_db.php';
+=======
+$page = isset($_GET['page']) ? $_GET['page'] : 'accueil.php';
+>>>>>>> 759c3c7 (2eme commit)
 $_SESSION['page'] = 'content/'.$page;
 
 // Gestion des balises SEO par page
