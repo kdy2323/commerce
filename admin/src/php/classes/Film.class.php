@@ -1,6 +1,6 @@
 <?php
 
-class Pays
+class Film
 {
     private $_attributs = array();
 
@@ -11,7 +11,7 @@ class Pays
 
     public function hydrate(array $data)
     {
-        foreach ($data as $champ => $valeur) { 
+        foreach ($data as $champ => $valeur) {
             $this->$champ = $valeur;
         }
     }
@@ -29,3 +29,4 @@ class Pays
     }
 
 }
+

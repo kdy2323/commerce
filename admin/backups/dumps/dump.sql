@@ -100,3 +100,11 @@ CREATE TABLE utilisateur (
    role TEXT NOT NULL CHECK (role IN ('admin', 'client')),
    PRIMARY KEY(id_utilisateur)
 );
+CREATE TABLE reservations (
+    id_reservation SERIAL PRIMARY KEY,
+    id_utilisateur INT NOT NULL,
+    id_film INT NOT NULL,
+    date_reservation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur),
+    FOREIGN KEY (id_film) REFERENCES film(id_film)
+);

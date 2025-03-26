@@ -1,6 +1,6 @@
 <?php
 
-class Admin
+class Utilisateur
 {
     private $_attributs = array();
 
@@ -17,7 +17,7 @@ class Admin
     }
 
     public function __get($champ)
-    { //champ = clé
+    {
         if (isset($this->_attributs[$champ])) {
             return $this->_attributs[$champ];
         }
@@ -27,6 +27,5 @@ class Admin
     {
         $this->_attributs[$champ] = $valeur;
     }
-
 }
-
+?>
