@@ -30,7 +30,7 @@ include('./src/php/utils/all_includes.php');
     <section id="contenu">
         <div class="container">
             <?php
-            include('./content/'.$_SESSION['page']);
+            include('content/'.$_SESSION['page']);
             ?>
         </div>
     </section>

@@ -1,5 +1,5 @@
 <?php
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['client'])) {
     header("Location: login_client.php");
     exit();
 }
@@ -10,7 +10,7 @@ $total = 0;
 // Vider le panier
 if (isset($_POST['vider_panier'])) {
     $_SESSION['panier'] = [];
-    header("Location: panier.php");
+    header("Location: index_.php?page=panier.php");
     exit();
 }
 ?>
@@ -33,10 +33,10 @@ if (isset($_POST['vider_panier'])) {
         </tr>
         <?php foreach ($panier as $film): ?>
             <tr>
-                <td><?php echo htmlspecialchars($film->titre); ?></td>
-                <td><?php echo number_format($film->prix, 2, ',', ' ') . " €"; ?></td>
+                <td><?php echo htmlspecialchars($film['titre']); ?></td>
+                <td><?php echo number_format($film['prix'], 2, ',', ' ') . " €"; ?></td>
             </tr>
-            <?php $total += $film->prix; ?>
+            <?php $total += $film['prix']; ?>
         <?php endforeach; ?>
         <tr>
             <td><strong>Total</strong></td>
@@ -51,7 +51,8 @@ if (isset($_POST['vider_panier'])) {
     <p>Votre panier est vide.</p>
 <?php endif; ?>
 
-<a href="accueil_client.php">Retour à l'accueil</a>
+<a href="index_.php?page=accueil_client.php">Ajouter Film</a>
+<a href="index_.php?page=valide.php">Valider</a>
 
 </body>
 </html>

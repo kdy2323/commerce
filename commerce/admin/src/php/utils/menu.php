@@ -11,9 +11,6 @@
                         <a class="nav-link active" aria-current="page" href="index_.php?page=accueil_client.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index_.php?page=commande.php">Commander</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="index_.php?page=panier.php">Mon panier</a>
                     </li>
                 <?php elseif (isset($_SESSION['admin'])): ?>

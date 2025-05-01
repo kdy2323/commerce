@@ -29,6 +29,7 @@ $films = $filmDAO->getFilm();
         <?php foreach ($films as $film): ?>
             <div class="film-card">
                 <?php
+                    print "<h4>" . $film->id_film . "</h4>";
                     print "<h4>" . $film->titre . "</h4>";
                     print "<p>Genre : " . $film->genre . "</p>";
                     print "<p>Date de sortie : " . $film->date_sortie . "</p>";

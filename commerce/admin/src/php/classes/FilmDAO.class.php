@@ -33,5 +33,27 @@ class FilmDAO
             print "Echec de la requête " . $e->getMessage();
         }
     }
+    public function ajouterFilm($titre, $date_sortie, $duree, $synopsis, $id_studio, $prix, $genre) {
+        $query = "INSERT INTO film (titre, date_sortie, duree, synopsis, id_studio, prix, genre) 
+                  VALUES (:titre, :date_sortie, :duree, :synopsis, :id_studio, :prix, :genre)";
+        
+        $stmt = $this->_bd->prepare($query);
+        $stmt->bindParam(':titre', $titre);
+        $stmt->bindParam(':date_sortie', $date_sortie);
+        $stmt->bindParam(':duree', $duree);
+        $stmt->bindParam(':synopsis', $synopsis);
+        $stmt->bindParam(':id_studio', $id_studio);
+        $stmt->bindParam(':prix', $prix);
+        $stmt->bindParam(':genre', $genre);
+    
+        if ($stmt->execute()) {
+    return $this->_bd->lastInsertId();
+} else {
+    print_r($stmt->errorInfo());
+}
+
+    
+        return false;
+    }
     
 }

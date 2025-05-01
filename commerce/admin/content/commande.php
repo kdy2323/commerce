@@ -4,8 +4,9 @@ if (!isset($_SESSION['client'])) {
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_film'])) {
-    $film_id = $_POST['id_film'];
+if (isset($_POST['film_id'])) {
+    echo "ok";
+    $film_id = $_POST['film_id'];
     $titre = $_POST['titre'];
     $prix = $_POST['prix'];
 
@@ -20,9 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_film'])) {
         'titre' => $titre,
         'prix' => $prix
     ];
-    print_r($_SESSION['panier']);
 }
 
 // Redirection vers le panier
-//header("Location: index_.php?page=panier.php");
+header("Location: index_.php?page=panier.php");
 exit();
