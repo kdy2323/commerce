@@ -1,18 +1,9 @@
 <?php
-if (!isset($_SESSION['client'])) {
-    header("Location: login_client.php");
-    exit();
-}
 
-$panier = $_SESSION['panier'] ?? [];
-$total = 0;
+$commandeDAO = new CommandeDAO($cnx);
 
-// Vider le panier
-if (isset($_POST['vider_panier'])) {
-    $_SESSION['panier'] = [];
-    header("Location: index_.php?page=panier.php");
-    exit();
-}
+$nom_client = $_SESSION['client'];
+$commandes = $commandeDAO->getCommandesByClient($nom_client);
 ?>
 
 <!DOCTYPE html>
@@ -20,39 +11,40 @@ if (isset($_POST['vider_panier'])) {
 <head>
     <meta charset="UTF-8">
     <title>Mon Panier</title>
+    <link rel="stylesheet" href="/admin/assets/css/style.css">
 </head>
 <body>
 
-<h2>Mon Panier</h2>
+<h2>Mon Panier - Commandes de <?php echo htmlspecialchars($nom_client); ?></h2>
 
-<?php if (!empty($panier)): ?>
+<?php if (!empty($commandes)): ?>
     <table border="1">
-        <tr>
-            <th>Film</th>
-            <th>Prix</th>
-        </tr>
-        <?php foreach ($panier as $film): ?>
+        <thead>
             <tr>
-                <td><?php echo htmlspecialchars($film['titre']); ?></td>
-                <td><?php echo number_format($film['prix'], 2, ',', ' ') . " €"; ?></td>
+                <th>ID Commande</th>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Prix unitaire</th>
+                <th>Prix total</th>
+                <th>Date</th>
             </tr>
-            <?php $total += $film['prix']; ?>
+        </thead>
+        <tbody>
+        <?php foreach ($commandes as $cmd): ?>
+            <tr>
+                <td><?php echo $cmd['id_commande']; ?></td>
+                <td><?php echo htmlspecialchars($cmd['nom_produit']); ?></td>
+                <td><?php echo $cmd['quantite']; ?></td>
+                <td><?php echo number_format($cmd['prix_produit'], 2); ?> €</td>
+                <td><?php echo number_format($cmd['quantite'] * $cmd['prix_produit'], 2); ?> €</td>
+                <td><?php echo $cmd['date_commande']; ?></td>
+            </tr>
         <?php endforeach; ?>
-        <tr>
-            <td><strong>Total</strong></td>
-            <td><strong><?php echo number_format($total, 2, ',', ' ') . " €"; ?></strong></td>
-        </tr>
+        </tbody>
     </table>
-
-    <form method="post">
-        <button type="submit" name="vider_panier">Vider le panier</button>
-    </form>
 <?php else: ?>
-    <p>Votre panier est vide.</p>
+    <p>Aucune commande passée.</p>
 <?php endif; ?>
-
-<a href="index_.php?page=accueil_client.php">Ajouter Film</a>
-<a href="index_.php?page=valide.php">Valider</a>
 
 </body>
 </html>

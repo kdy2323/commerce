@@ -1,14 +1,13 @@
 <?php
-//session_start();
-//require_once "FilmDAO.php";
+
 
 if (!isset($_SESSION['client'])) {
     header("Location: login_client.php"); // Redirection si non connecté
     exit();
 }
 
-$filmDAO = new FilmDAO($cnx);
-$films = $filmDAO->getFilm();
+$produitDAO = new ProduitDAO($cnx);
+$produits = $produitDAO->getProduit();
 ?>
 
 <!DOCTYPE html>
@@ -17,37 +16,35 @@ $films = $filmDAO->getFilm();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil Client</title>
-    <link rel="stylesheet" href="/admin/assets/css/style.css"> <!-- Ajoute un fichier CSS pour le design -->
+    <link rel="stylesheet" href="/admin/assets/css/style.css">
 </head>
 <body>
 
 <h2>Bienvenue, <?php echo htmlspecialchars($_SESSION['client']); ?> !</h2>
 
-<h3>Liste des Films Disponibles</h3>
+<h3>Liste des Voitures Disponibles</h3>
 <div class="film-container">
-    <?php if (!empty($films)): ?>
-        <?php foreach ($films as $film): ?>
-            <div class="film-card">
+    <?php if (!empty($produits)): ?>
+        <?php foreach ($produits as $produit): ?>
+            <div class="produit-card">
                 <?php
-                    print "<h4>" . $film->id_film . "</h4>";
-                    print "<h4>" . $film->titre . "</h4>";
-                    print "<p>Genre : " . $film->genre . "</p>";
-                    print "<p>Date de sortie : " . $film->date_sortie . "</p>";
-                    print "<p>Année de sortie : " . $film->annee . "</p>";
-                    print "<p>Durée : " . $film->duree . " minutes</p>";
-                    print "<p>Synopsie : " . $film->synopsis . "</p>";
-                    print "<p>Prix : " . $film->prix . " €</p>";
+                    print "<h4>" . $produit->id_produit . "</h4>";
+                    print "<h4>" . $produit->nom_produit . "</h4>";
+                    print "<p>Genre : " . $produit->description . "</p>";
+                    print "<p>Prix : " . $produit->prix_produit . " €</p>";
+                    print "<p>Marque : " . $produit->nom_marque . "</p>";
+                    echo "<img src='../" . htmlspecialchars($produit->image) . "' width='150'>";
                 ?>
                 <form action="index_.php?page=commande.php" method="post">
-                    <input type="hidden" name="film_id" value="<?php echo $film->id_film; ?>">
-                    <input type="hidden" name="titre" value="<?php echo $film->titre; ?>">
-                    <input type="hidden" name="prix" value="<?php echo $film->prix; ?>">
-                    <button type="submit">Commander</button>
+                    <input type="hidden" name="produit_id" value="<?php echo $produit->id_produit; ?>">
+                    <input type="hidden" name="nom" value="<?php echo $produit->nom_produit; ?>">
+                    <input type="number" name="quantite" min="1" value="1" required>
+                    <button type="submit" name="commander">Commander</button>
                 </form>
             </div>
         <?php endforeach; ?>
     <?php else: ?>
-        <p>Aucun film disponible pour le moment.</p>
+        <p>Aucune voiture disponible pour le moment.</p>
     <?php endif; ?>
 </div>
 

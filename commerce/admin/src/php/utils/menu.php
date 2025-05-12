@@ -11,14 +11,14 @@
                         <a class="nav-link active" aria-current="page" href="index_.php?page=accueil_client.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index_.php?page=panier.php">Mon panier</a>
+                        <a class="nav-link" href="index_.php?page=panier.php">Mes Commandes</a>
                     </li>
                 <?php elseif (isset($_SESSION['admin'])): ?>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index_.php?page=accueil_admin.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index_.php?page=ajout_film.php">Ajouter un film</a>
+                        <a class="nav-link" href="index_.php?page=liste_commande.php">Voir les Commandes</a>
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
@@ -37,10 +37,10 @@
                         -Plus-
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="index_.php?page=contact.php">Contact</a></li>
-                        <li><a class="dropdown-item" href="index_.php?page=propos.php>A propos">A propos</a></li>
+                        <li><a class="dropdown-item" href="#">Contact</a></li>
+                        <li><a class="dropdown-item" href="#">A propos</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="index_.php?page=faq.php">FAQ</a></li>
+                        <li><a class="dropdown-item" href="#">FAQ</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
