@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using commerce.Models;
+
 
 namespace commerce.Controllers
 {

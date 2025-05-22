@@ -1,8 +1,44 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="jumbotron bg-light p-5 rounded shadow">
+        <h1 class="display-4 text-primary">Bienvenue sur Commerce Local 🌿</h1>
+        <p class="lead">Découvrez et commandez des produits frais et artisanaux directement auprès des producteurs de votre région.</p>
+        <hr class="my-4">
+        
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="/images/producteurs.jpg" class="card-img-top" alt="Producteurs locaux">
+                <div class="card-body">
+                    <h5 class="card-title">Producteurs locaux</h5>
+                    <p class="card-text">Chaque produit est proposé par des producteurs passionnés de votre région.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="/images/paniers.jpg" class="card-img-top" alt="Commandez en ligne">
+                <div class="card-body">
+                    <h5 class="card-title">Commandez en ligne</h5>
+                    <p class="card-text">Créez votre panier et recevez vos produits à domicile ou en point retrait.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="/images/nature.jpg" class="card-img-top" alt="Soutenez le circuit court">
+                <div class="card-body">
+                    <h5 class="card-title">Soutenez le circuit court</h5>
+                    <p class="card-text">Consommez mieux en soutenant l’économie locale et des pratiques durables.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
