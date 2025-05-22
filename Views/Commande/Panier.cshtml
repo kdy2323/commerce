@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Commerce.Models.LigneCommande>
+
+@{
+    ViewData["Title"] = "Votre panier";
+}
+
+<h2>Votre panier</h2>
+
+@if (!Model.Any())
+{
+    <p>Votre panier est vide.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Prix unitaire</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Produit.Nom</td>
+                    <td>@item.Quantite</td>
+                    <td>@item.PrixUnitaire.ToString("C")</td>
+                    <td>@(item.Quantite * item.PrixUnitaire).ToString("C")</td>
+                    <td>
+                        <form asp-action="SupprimerDuPanier" asp-route-id="@item.Id" method="post">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>
+        <strong>Total général :</strong> @Model.Sum(i => i.Quantite * i.PrixUnitaire).ToString("C")
+    </p>
+
+    <a class="btn btn-primary" asp-action="Valider">Valider la commande</a>
+}
