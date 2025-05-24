@@ -1,0 +1,45 @@
+﻿@using Commerce.Models
+@model List<LigneCommande>
+
+@{
+    ViewData["Title"] = "Votre Panier";
+    float total = Model.Sum(l => l.Produit.Prix * l.Quantite);
+}
+
+<h2>🛒 Votre Panier</h2>
+
+@if (Model.Count == 0)
+{
+    <p>Votre panier est vide.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix unitaire</th>
+                <th>Quantité</th>
+                <th>Sous-total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ligne in Model)
+            {
+                <tr>
+                    <td>@ligne.Produit.Nom</td>
+                    <td>@ligne.Produit.Prix €</td>
+                    <td>@ligne.Quantite</td>
+                    <td>@(ligne.Produit.Prix * ligne.Quantite) €</td>
+                    <td>
+                        <a asp-controller="Commande" asp-action="SupprimerDuPanier" asp-route-id="@ligne.Id" class="btn btn-danger btn-sm">Supprimer</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Total : @total €</h4>
+}
+<a asp-controller="Commande" asp-action="Valider" class="btn btn-success">Valider la commande</a>

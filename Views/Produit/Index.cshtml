@@ -1,0 +1,33 @@
+﻿@using Commerce.Models
+@model IEnumerable<Produit>
+
+@{
+    ViewData["Title"] = "Liste des produits";
+}
+
+<h2 class="text-center my-4">Nos Produits</h2>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var produit in Model)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <img src="@produit.ImageUrl" class="card-img-top" alt="@produit.Nom" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@produit.Nom</h5>
+                    <p class="card-text">@produit.Description</p>
+                    <p class="card-text"><strong>@produit.Prix.ToString("0.00") €</strong></p>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-controller="Produit" asp-action="AjouterAuPanier" asp-route-produitId="@produit.Id" class="btn btn-primary">
+                        Ajouter au panier
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="card-footer text-center">
+    <a class="btn btn-primary" asp-controller="Commande" asp-action="Panier">Accéder au panier</a>
+</div>
+è

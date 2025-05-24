@@ -1,0 +1,37 @@
+﻿@using Commerce.Models
+@model IEnumerable<Produit>
+
+@{
+    ViewData["Title"] = "Espace Producteur";
+}
+
+<h2 class="text-center mb-4">Mes Produits</h2>
+
+<div class="text-center mb-3">
+    <a asp-controller="Produit" asp-action="Ajouter" class="btn btn-success">Ajouter un produit</a>
+</div>
+
+<table class="table table-bordered text-center">
+    <thead class="table-light">
+        <tr>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var produit in Model)
+        {
+            <tr>
+                <td>@produit.Nom</td>
+                <td>@produit.Prix €</td>
+                <td>@produit.Description</td>
+                <td>
+                    <a asp-controller="Produit" asp-action="Modifier" asp-route-id="@produit.Id" class="btn btn-primary btn-sm">Modifier</a>
+                    <a asp-controller="Produit" asp-action="Supprimer" asp-route-id="@produit.Id" class="btn btn-danger btn-sm">Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

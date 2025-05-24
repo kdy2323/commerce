@@ -1,6 +1,6 @@
 ﻿namespace commerce.Models
 {
-    public abstract class Produit
+    public class Produit
     {
         public int Id { get; set; }
         public string Nom { get; set; }

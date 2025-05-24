@@ -15,8 +15,6 @@ CREATE TABLE Produit (
     Stock INT NOT NULL,
     ImageUrl VARCHAR(255),
     ProducteurId INT NOT NULL,
-    TypeProduit VARCHAR(50) NOT NULL,
-    TypeFruitLegume VARCHAR(50),
     DatePeremption DATE,
     CONSTRAINT FK_Produit_Utilisateur FOREIGN KEY (ProducteurId) REFERENCES Utilisateur(Id) ON DELETE CASCADE
 );

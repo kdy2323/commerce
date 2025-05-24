@@ -1,5 +1,12 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Commerce.Models
+@model Utilisateur
 @{
+    ViewData["Title"] = "Profil";
 }
+
+<h2>Bienvenue @Model.Nom</h2>
+
+<h3>Remplir le panier</h3>
+
+<a class="btn btn-primary" asp-controller="Commande" asp-action="Panier">Accéder au panier</a>
+<a class="btn btn-primary" asp-controller="Produit" asp-action="Index">Voir Produit</a>

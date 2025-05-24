@@ -1,0 +1,25 @@
+﻿@using Commerce.Models
+@model Produit
+
+<h2>Modifier le Produit</h2>
+
+<form asp-action="Modifier" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label>Nom</label>
+        <input asp-for="Nom" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Prix</label>
+        <input asp-for="Prix" class="form-control" type="number" step="0.01" />
+    </div>
+    <div class="form-group">
+        <label>Image URL</label>
+        <input asp-for="ImageUrl" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Enregistrer</button>
+</form>
